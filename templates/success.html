@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Service Selected - Hire Verified Workers{% endblock %}
+
+{% block content %}
+<div class="success-page">
+    <a href="{{ url_for('hero') }}" class="back-button">← Back to Home</a>
+    
+    <div class="success-content">
+        <div class="success-icon">✅</div>
+        <h1>Service Request Submitted!</h1>
+        
+        <div class="confirmation-details">
+            <h2>Confirmation Details</h2>
+            <div class="detail-item">
+                <strong>Name:</strong> {{ name }}
+            </div>
+            <div class="detail-item">
+                <strong>Phone:</strong> {{ phone }}
+            </div>
+            <div class="detail-item">
+                <strong>Service Selected:</strong> {{ service.name }}
+            </div>
+            <div class="detail-item">
+                <strong>Status:</strong> <span class="status-pending">Pending Confirmation</span>
+            </div>
+        </div>
+        
+        <div class="next-steps">
+            <h3>What Happens Next?</h3>
+            <ul>
+                <li>Our team will contact you within 30 minutes</li>
+                <li>We'll match you with verified professionals</li>
+                <li>Get your service completed quickly and efficiently</li>
+            </ul>
+        </div>
+        
+        <div class="action-buttons">
+            <a href="{{ url_for('services') }}" class="btn-secondary">Select Another Service</a>
+            <a href="{{ url_for('hero') }}" class="btn-primary">Back to Homepage</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

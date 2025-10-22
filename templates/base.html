@@ -1,0 +1,70 @@
+cat > templates/base.html << 'EOF'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Technician Hire{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h2>Technician Hire</h2>
+                </div>
+                <nav class="nav-menu">
+                    <a href="#why-us">Why Us</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#get-started" class="get-started-btn">Get Started</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    {% block content %}{% endblock %}
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 CodexEngineering. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        function validateForm() {
+            const name = document.querySelector('input[name="name"]');
+            const phone = document.querySelector('input[name="phone"]');
+            
+            if (!name.value.trim()) {
+                alert('Please enter your name');
+                return false;
+            }
+            
+            if (!phone.value.trim()) {
+                alert('Please enter your phone number');
+                return false;
+            }
+            
+            return true;
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+EOF

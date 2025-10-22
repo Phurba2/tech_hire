@@ -1,0 +1,87 @@
+cat > templates/hero.html << 'EOF'
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero" id="hero">
+    <div class="container hero-content">
+        <div class="hero-text">
+            <h1>Hire Verified Workers in Minutes</h1>
+            <p>Post your job and connect with skilled workers near you — fast, easy, and free.</p>
+            <form class="lead-form" method="POST" action="{{ url_for('services') }}" onsubmit="return validateForm()">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="tel" name="phone" placeholder="Phone Number" required>
+                <button type="submit">Start Hiring</button>
+            </form>
+        </div>
+        <div class="hero-image">
+            <div class="image-grid">
+                <img src="{{ url_for('static', filename='images/vaccum.jpeg') }}" alt="Vacuum Service" class="service-img">
+                <img src="{{ url_for('static', filename='images/ac.jpeg') }}" alt="AC Service" class="service-img">
+                <img src="{{ url_for('static', filename='images/fridge.jpeg') }}" alt="Fridge Service" class="service-img">
+                <img src="{{ url_for('static', filename='images/wm.jpg') }}" alt="Washing Machine Service" class="service-img">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us Section -->
+<section class="why-choose-us" id="why-us">
+    <div class="container">
+        <h2 class="section-title">Why Choose Us?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">✅</div>
+                <h3>100% Verified Profiles</h3>
+                <p>All candidates go through a verification process to ensure quality and reliability.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Instant Hiring</h3>
+                <p>Find and connect with workers within minutes of posting your job requirements.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📋</div>
+                <h3>Wide Category</h3>
+                <p>From delivery to housekeeping, find all types of workers for every need.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="how-it-works" id="how-it-works">
+    <div class="container">
+        <h2 class="section-title">How It Works</h2>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Fill Your Hiring Requirements</h3>
+                <p>Tell us what you need and when you need it done.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>We Match You with Suitable Candidates</h3>
+                <p>Our algorithm finds the perfect workers for your job.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>You Select and Hire Directly</h3>
+                <p>Choose from verified candidates and hire instantly.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Ready to Hire Section -->
+<section class="ready-to-hire" id="get-started">
+    <div class="container">
+        <div class="ready-content">
+            <h2>Ready to Hire?</h2>
+            <p>Post your job now and get instant responses from job-ready workers.</p>
+            <a href="#hero" class="ready-hire-btn">Start Hiring</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+EOF
