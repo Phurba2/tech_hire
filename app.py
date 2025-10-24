@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 
 app = Flask(__name__)
+app.secret_key = 'your_secret_key'  # Required for flash messages
 
 # Sample services data
 SERVICES = [
@@ -12,6 +13,16 @@ SERVICES = [
     {"id": 6, "name": "Electrician Service", "icon": "⚡", "description": "Professional electrical services"}
 ]
 
+# Sample technicians data (matches technician.html hardcoded data)
+TECHNICIANS = [
+    {"id": 1, "name": "John Doe", "expertise": "Plumbing", "phone": "+1234567890", "photo_url": "/static/images/technician1.jpg"},
+    {"id": 2, "name": "Jane Smith", "expertise": "Electrical", "phone": "+1234567891", "photo_url": "/static/images/technician2.jpg"},
+    {"id": 3, "name": "Mike Johnson", "expertise": "HVAC", "phone": "+1234567892", "photo_url": "/static/images/technician3.jpg"},
+    {"id": 4, "name": "Sarah Brown", "expertise": "Carpentry", "phone": "+1234567893", "photo_url": "/static/images/technician4.jpg"},
+    {"id": 5, "name": "David Lee", "expertise": "Painting", "phone": "+1234567894", "photo_url": "/static/images/technician5.jpg"},
+    {"id": 6, "name": "Emily Davis", "expertise": "Appliance Repair", "phone": "+1234567895", "photo_url": "/static/images/technician6.jpg"}
+]
+
 @app.route('/')
 def hero():
     return render_template('hero.html')
@@ -19,9 +30,11 @@ def hero():
 @app.route('/services', methods=['GET', 'POST'])
 def services():
     if request.method == 'POST':
-        # Handle form submission from hero page
         name = request.form.get('name')
         phone = request.form.get('phone')
+        if not name or not phone:
+            flash('Name and phone number are required', 'error')
+            return render_template('services.html', services=SERVICES)
         return render_template('services.html', services=SERVICES, name=name, phone=phone)
     
     return render_template('services.html', services=SERVICES)
@@ -32,14 +45,53 @@ def select_service():
     name = request.form.get('name')
     phone = request.form.get('phone')
     
+    if not name or not phone:
+        flash('Name and phone number are required', 'error')
+        return redirect(url_for('services'))
+    
     # Find the selected service
     selected_service = next((service for service in SERVICES if service['id'] == int(service_id)), None)
     
-    # In a real application, you would save this to a database
+    if not selected_service:
+        flash('Invalid service selected', 'error')
+        return redirect(url_for('services'))
+    
+    # In a real application, save to database
     print(f"Service request: {name} ({phone}) selected {selected_service['name']}")
     
-    return render_template('success.html', 
-                         service=selected_service, 
+    # Redirect to technicians page
+    return redirect(url_for('technicians', name=name, phone=phone, service_id=service_id))
+
+@app.route('/technicians')
+def technicians():
+    name = request.args.get('name', '')
+    phone = request.args.get('phone', '')
+    service_id = request.args.get('service_id', '')
+    return render_template('technician.html', technicians=TECHNICIANS, name=name, phone=phone, service_id=service_id)
+
+@app.route('/select-technician', methods=['POST'])
+def select_technician():
+    technician_id = request.form.get('technician_id')
+    name = request.form.get('name')
+    phone = request.form.get('phone')
+    service_id = request.form.get('service_id')
+    
+    if not name or not phone:
+        flash('Name and phone number are required', 'error')
+        return redirect(url_for('technicians'))
+    
+    # Find the selected technician
+    selected_technician = next((tech for tech in TECHNICIANS if tech['id'] == int(technician_id)), None)
+    
+    if not selected_technician:
+        flash('Invalid technician selected', 'error')
+        return redirect(url_for('technicians'))
+    
+    # In a real application, save to database
+    print(f"Technician request: {name} ({phone}) selected {selected_technician['name']} for service ID {service_id}")
+    
+    return render_template('technician.html', 
+                         technician=selected_technician, 
                          name=name, 
                          phone=phone)
 
