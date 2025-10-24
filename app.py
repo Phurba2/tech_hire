@@ -15,12 +15,12 @@ SERVICES = [
 
 # Sample technicians data (matches technician.html hardcoded data)
 TECHNICIANS = [
-    {"id": 1, "name": "John Doe", "expertise": "Plumbing", "phone": "+1234567890", "photo_url": "/static/images/technician1.jpg"},
-    {"id": 2, "name": "Jane Smith", "expertise": "Electrical", "phone": "+1234567891", "photo_url": "/static/images/technician2.jpg"},
-    {"id": 3, "name": "Mike Johnson", "expertise": "HVAC", "phone": "+1234567892", "photo_url": "/static/images/technician3.jpg"},
-    {"id": 4, "name": "Sarah Brown", "expertise": "Carpentry", "phone": "+1234567893", "photo_url": "/static/images/technician4.jpg"},
-    {"id": 5, "name": "David Lee", "expertise": "Painting", "phone": "+1234567894", "photo_url": "/static/images/technician5.jpg"},
-    {"id": 6, "name": "Emily Davis", "expertise": "Appliance Repair", "phone": "+1234567895", "photo_url": "/static/images/technician6.jpg"}
+    {"id": 1, "name": "John Doe", "expertise": "Plumbing", "phone": "+1234567890", "photo_url": "/static/images/a.jpeg"},
+    {"id": 2, "name": "Jane Smith", "expertise": "Electrical", "phone": "+1234567891", "photo_url": "/static/images/b.jpeg"},
+    {"id": 3, "name": "Mike Johnson", "expertise": "HVAC", "phone": "+1234567892", "photo_url": "/static/images/c.jpeg"},
+    {"id": 4, "name": "Sarah Brown", "expertise": "Carpentry", "phone": "+1234567893", "photo_url": "/static/images/a.jpeg"},
+    {"id": 5, "name": "David Lee", "expertise": "Painting", "phone": "+1234567894", "photo_url": "/static/images/b.jpeg"},
+    {"id": 6, "name": "Emily Davis", "expertise": "Appliance Repair", "phone": "+1234567895", "photo_url": "/static/images/c.jpeg"}
 ]
 
 @app.route('/')
