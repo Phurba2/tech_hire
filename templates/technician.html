@@ -25,9 +25,9 @@
             {% for technician in technicians %}
             <div class="technician-card">
                 <img src="{{ technician.photo_url | default('/static/images/default-technician.jpg') }}" alt="{{ technician.name }}" class="technician-photo">
-                <h3>{{ technician.name }}</h3>
-                <p><strong>Expertise:</strong> {{ technician.expertise }}</p>
-                <p><strong>Phone:</strong> <a href="tel:{{ technician.phone }}" class="call-now">Call Now</a></p>
+                <h3 class="technician-name">{{ technician.name }}</h3>
+                <p class="technician-expertise"><strong>Expertise:</strong> {{ technician.expertise }}</p>
+                <p class="technician-phone"><strong>Phone:</strong> <a href="tel:{{ technician.phone }}" class="call-now">Call Now</a></p>
             </div>
             {% endfor %}
         </div>
